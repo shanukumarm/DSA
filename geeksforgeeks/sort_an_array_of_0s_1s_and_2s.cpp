@@ -11,34 +11,23 @@ class Solution
     void sort012(int a[], int n)
     {
         // code here 
-        int zeros=0, ones=0, twos=0;
-        for(int i=0; i<n; i++)
-        {
-            if(a[i] == 0)
-            {
-                zeros++;
-                continue;
-            }
-            else if(a[i]==1)
-            {
-                ones++;
-                continue;
-            }
-            twos++;
-        }
+        int low=0, mid=0, high=n-1;
         
-        int index=0;
-        for(int i=0; i<zeros; i++)
+        while(mid<=high)
         {
-            a[index++] = 0;
-        }
-        for(int i=0; i<ones; i++)
-        {
-            a[index++] = 1;
-        }
-        for(int i=0; i<twos; i++)
-        {
-            a[index++] = 2;
+            if(a[mid] == 0)
+            {
+                a[mid++] = a[low];
+                a[low++] = 0;
+                continue;
+            }
+            else if(a[mid] == 1)
+            {
+                a[mid++];
+                continue;
+            }
+            a[mid] = a[high];
+            a[high--] = 2;
         }
     }
     
