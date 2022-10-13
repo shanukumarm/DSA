@@ -11,9 +11,8 @@ using namespace std;
 // User function template for C++
 
 class Solution{
-  public:
-    int MissingNumber(vector<int>& array, int n) {
-        // Your code goes here
+    int by_changing_array(vector<int>& array, int n)
+    {
         bool flag=false;
         
         for(int i=0; i<n-1; i++)
@@ -31,6 +30,35 @@ class Solution{
                     return i+1;
                     
         return n;
+    }
+    
+    int sum_n_natural_numbers(vector<int>& array, int n)
+    {
+        int ans = n*(n+1)/2;
+        
+        for(int i=0; i<n-1; i++)
+        {
+            ans -= array[i];
+        }
+        
+        return ans;
+    }
+  public:
+    int MissingNumber(vector<int>& array, int n) {
+        // Your code goes here
+        // return by_changing_array(array, n);
+        
+        // return sum_n_natural_numbers(array, n);
+        
+        
+        int total = 1;
+        for(int i=2; i<=n; i++)
+        {
+            total += i;
+            total -= array[i-2];
+        }
+        
+        return total;
     }
 };
 
