@@ -43,12 +43,52 @@ class Solution{
         
         return ans;
     }
+    
+    int xor_(vector<int>& array, int n) 
+    {
+        int a=0, b=0;
+        
+        for(int i=0; i<n-1; i++)
+        {
+            a = a^array[i];
+        }
+        for(int i=1; i<=n; i++)
+        {
+            b = b^i;
+        }
+        return a^b;
+    }
+    
+    int cyclic_sort(vector<int>& array, int n) 
+    {
+        int i=0;
+        while(i<n)
+        {
+            int correct = array[i]-1;
+            if(array[i] < n && array[i] != array[correct])
+                swap(array[i], array[correct]);
+            else
+                i++;
+        }
+        
+        for(int i=0; i<n; i++)
+            if(i != array[i]-1)
+                return i+1;
+                
+        return n;
+    }
   public:
     int MissingNumber(vector<int>& array, int n) {
         // Your code goes here
         // return by_changing_array(array, n);
         
         // return sum_n_natural_numbers(array, n);
+        
+        // // XOR as a comparison operator sumof(x) ^ sumof(y) = 0, if sumof(x) and sumof(y) are equal.
+        // return xor_(array, n);
+        
+        // // cyclic sort method
+        // return cyclic_sort(array, n);
         
         
         int total = 1;
